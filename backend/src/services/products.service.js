@@ -5,7 +5,6 @@ const findAll = async () => {
   return { status: 'SUCCESSFUL', data: serviceRes };
 };
 
-
 const findById = async (id) => {
   const serviceRes = await productsModel.findById(id);
   if (!serviceRes || serviceRes.length === 0) {
