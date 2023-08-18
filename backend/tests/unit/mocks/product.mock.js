@@ -20,8 +20,14 @@ const productDBbyId = [
   },
 ];
 
+const productsFound = {
+  status: 'SUCCESSFUL',
+  data: productAll,
+};
+
 module.exports = {
   productAll,
   productDBbyId,
+  productsFound,
 };
 // João Astolfi um DEUS, ajudou demais <3
