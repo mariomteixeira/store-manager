@@ -11,7 +11,14 @@ const findById = async (id) => {
   return camelize(product);
 };
 
+const insert = async (name) => {
+  const [result] = await connection.execute('INSERT INTO products (name) VALUES (?)', [name]);
+  const insertedProductId = result.insertId;
+  return { id: insertedProductId, name };
+};
+
 module.exports = {
   findAll,
   findById,
+  insert,
 };
