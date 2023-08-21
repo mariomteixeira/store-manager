@@ -22,7 +22,26 @@ const findById = async (id) => {
   return camelize(sales);
 };
 
+const newSale = async () => {
+  const idQuery = 'SELECT MAX(id) AS maxId FROM sales';
+  const [[{ maxId }]] = await connection.execute(idQuery);
+  const query = 'INSERT INTO sales (id) VALUES (?)';
+  const id = maxId + 1;
+  await connection.execute(query, [id]);
+  return id;
+};
+
+const insert = async (saleId, productId, quantity) => {
+  const salesQuery = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)';
+  await connection.execute(salesQuery, [saleId, productId, quantity]);
+  const responseQuery = 'SELECT product_id, quantity FROM sales_products WHERE sale_id = ?';
+  const [response] = await connection.execute(responseQuery, [saleId]);
+  return camelize(response);
+};
+
 module.exports = {
   findAll,
   findById,
+  insert,
+  newSale,
 };
