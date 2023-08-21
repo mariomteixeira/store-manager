@@ -1,5 +1,6 @@
 const express = require('express');
 const { productController, salesController } = require('./controllers');
+const { validate } = require('./middlewares/validateNames');
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.get('/products/:id', productController.findById);
 app.get('/sales', salesController.findAll);
 app.get('/sales/:id', salesController.findById);
 
-app.post('/products', productController.insert);
+app.post('/products', validate, productController.insert);
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
