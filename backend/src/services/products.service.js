@@ -18,18 +18,17 @@ const insert = async (name) => {
   return { status: 'SUCCESSFUL', data: insertedProduct };
 };
 
-const update = async (productName, productId) => {
-  const productsId = (await productsModel.findAll()).map((product) => product.id);
-  if (!productsId.includes(productId)) {
+const update = async (productId, productName) => {
+  const updatedProduct = await productsModel.findById(productId);
+  if (!updatedProduct) {
     return { status: 'NOT FOUND', data: { message: 'Product not found' } };
   }
   await productsModel.update(productId, productName);
-  const updatedProduct = await productsModel.findById(productId);
   return { 
     status: 'SUCCESSFUL',
     data: {
       id: updatedProduct.id,
-      name: updatedProduct.name,
+      name: productName,
     },
   };
 };

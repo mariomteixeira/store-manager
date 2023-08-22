@@ -20,6 +20,7 @@ const insert = async (name) => {
 const update = async (id, name) => {
   const query = 'UPDATE products SET name = ? WHERE id = ?';
   const updateQuery = await connection.execute(query, [name, id]);
+  console.log(updateQuery);
   return updateQuery;
 };
 
