@@ -32,8 +32,16 @@ const salesFound = {
     data: salesAll,
   };
 
+const salesNotFound = {
+    status: 'NOT FOUND',
+    data: {
+      message: 'Sale not found',
+    },
+  };
+
 module.exports = {
     salesAll,
     salesByProductId,
     salesFound,
+    salesNotFound,
   };

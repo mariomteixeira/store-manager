@@ -20,6 +20,12 @@ describe('Testa o service de produtos', function () {
     expect(request.status).to.be.equal('SUCCESSFUL');
     expect(request.data).to.be.deep.equal(productDBbyId);
   });
+  it('Testa se service de produtos possui o método insert', async function () {
+    sinon.stub(productsModel, 'insert').resolves(productDBbyId);
+    const request = await productsService.insert('Produto Teste');
+    expect(request.status).to.be.equal('SUCCESSFUL');
+    expect(request.data).to.be.deep.equal(productDBbyId);
+  });
   afterEach(function () {
     sinon.restore();
   });

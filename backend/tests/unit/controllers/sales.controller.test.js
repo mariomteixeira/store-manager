@@ -38,6 +38,35 @@ describe('Testes no controller de vendas', function () {
     expect(response.status).to.be.calledWith(200);
     expect(response.json).to.be.calledWith(mock.salesFound.data);
   });
+  it('Testa se retorna erro 404 quando não encontra o id', async function () {
+    sinon.stub(salesService, 'findById').resolves(mock.salesNotFound);
+    const request = {
+      params: { id: 1 },
+    };
+    const response = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    await salesController.findById(request, response);
+    expect(response.status).to.be.calledWith(404);
+    expect(response.json).to.be.calledWith(mock.salesNotFound.data);
+  });
+  it('Testa se o sales controller possui o metodo insert', async function () {
+    sinon.stub(salesService, 'insert').resolves(mock.salesFound);
+    const request = {
+      body: {
+        userId: 1,
+        totalPrice: 100,
+      },
+    };
+    const response = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    await salesController.insert(request, response);
+    expect(response.status).to.be.calledWith(201);
+    expect(response.json).to.be.calledWith(mock.salesFound.data);
+  });
   afterEach(function () {
     sinon.restore();
   });
