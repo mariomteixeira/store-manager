@@ -30,6 +30,12 @@ const update = async (req, res) => {
   return res.status(200).json(updateProduct.data);
 };
 
+// const deleteProduct = async (req, res) => {
+//   const delProduct = await productsService.deleteProduct(req.params.id);
+//   if (delProduct.message === 'Product not found') return res.status(404).json(delProduct);
+//   return res.status(204).json(delProduct);
+// };
+
 module.exports = {
   findAll,
   findById,

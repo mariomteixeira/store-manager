@@ -33,6 +33,13 @@ const update = async (productId, productName) => {
   };
 };
 
+// const deleteProduct = async (id) => {
+//   const { status, data } = await findById(id);
+//   if (status === 'NOT FOUND') return data;
+//   await productsModel.deleteProduct(id);
+//   return { status: 'SUCCESSFUL' };
+// };
+
 module.exports = {
   findAll,
   findById,
