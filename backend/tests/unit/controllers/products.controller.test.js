@@ -58,6 +58,18 @@ describe('Testa o controller de produtos', function () {
     sinon.assert.calledWithExactly(response.status, 422);
     sinon.assert.calledWithExactly(response.json, { message: '"name" length must be at least 5 characters long' });
   });
+  it('Retorna um erro ao tentar inserir um produto novo com um nome inválido na DB', async function () {
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    const req = { body: { name: 'abc' } };
+
+    await middleware.validate(req, res);
+
+    expect(res.status).to.have.been.calledWith(422);
+    expect(res.json).to.have.been.calledWith({ message: '"name" length must be at least 5 characters long' });
+  });
   afterEach(function () {
     sinon.restore();
   });

@@ -17,7 +17,18 @@ const findById = async (req, res) => {
 const insert = async (req, res) => {
   const { body } = req;
   const { data } = await salesService.insert(body);
-  res.status(201).json(data);
+  console.log('Data:', body);
+  if (data.status !== 'SUCCESSFUL') {
+    switch (data.data.message) {
+      case '"quantity" must be greater than or equal to 1':
+        return res.status(422).json(data.data);
+      case 'Product not found':
+        return res.status(404).json(data.data);
+      default:
+        return res.status(400).json(data.data);
+    }
+  }
+  return res.status(201).json(data);
 };
 
 module.exports = {

@@ -16,4 +16,10 @@ describe('Testes na service de vendas', function () {
     const expected = 'SUCCESSFUL';
     expect(status).to.deep.equal(expected);
   });
+  it('Retornar um objeto com o find by id de vendas', async function () {
+    sinon.stub(salesModel, 'findById').resolves(mock.salesByProductId);
+    const { status } = await salesService.findById();
+    const expected = 'SUCCESSFUL';
+    expect(status).to.deep.equal(expected);
+  });
 });
