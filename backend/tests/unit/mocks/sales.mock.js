@@ -27,7 +27,13 @@ const salesByProductId = [
     },
   ];
 
+const salesFound = {
+    status: 'SUCCESSFUL',
+    data: salesAll,
+  };
+
 module.exports = {
     salesAll,
     salesByProductId,
+    salesFound,
   };

@@ -22,4 +22,7 @@ describe('Testes na service de vendas', function () {
     const expected = 'SUCCESSFUL';
     expect(status).to.deep.equal(expected);
   });
+  afterEach(function () {
+    sinon.restore();
+  });
 });

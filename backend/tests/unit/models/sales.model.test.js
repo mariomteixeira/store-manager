@@ -40,9 +40,6 @@ describe('Testes na model de vendas', function () {
     const expected = 'Sale not found';
     expect(message).to.be.equal(expected);
   });
-  afterEach(function () {
-    sinon.restore();
-  });
   it('Retorna um objeto com o find by id de vendas', async function () {
     sinon.stub(salesModel, 'findById').resolves(mock.salesByProductId);
     const response = await salesModel.findById(1);
@@ -54,5 +51,8 @@ describe('Testes na model de vendas', function () {
       },
     ];
     expect(response).to.be.deep.equal(expected);
+  });
+  afterEach(function () {
+    sinon.restore();
   });
 });

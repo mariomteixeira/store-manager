@@ -20,4 +20,7 @@ describe('Testa o service de produtos', function () {
     expect(request.status).to.be.equal('SUCCESSFUL');
     expect(request.data).to.be.deep.equal(productDBbyId);
   });
+  afterEach(function () {
+    sinon.restore();
+  });
 });
