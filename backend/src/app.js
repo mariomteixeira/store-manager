@@ -15,6 +15,8 @@ app.get('/sales/:id', salesController.findById);
 app.post('/products', validate, productController.insert);
 app.post('/sales', validateProducts, validateQuantity, salesController.insert);
 
+app.put('/products/:id', validate, productController.update);
+
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.json({ status: 'Store Manager UP!' });
